@@ -11,6 +11,7 @@ from userInitialisation import initialisationOptions, creatingFiles
 player1 = {1: False, 2: False, 3: False, 4: False, 5: False, 6: False}
 player2 = {1: False, 2: False, 3: False, 4: False, 5: False, 6: False}
 
+
 # Attacking function with initialising all possible outputs
 def attack(player, turn, username1, username2, currentNumber, computerResponse):
     if player[currentNumber] == None:
@@ -318,7 +319,8 @@ def onePlayerGame():
             print('\u001b[41mYour response is incorrect. Try again :)\u001b[0m')
 
     if gamesNumber % 2 == 1:
-        print(f'\u001b[35mYou need to play an even number of rounds. You will play {gamesNumber+1} rounds. \u001b[0m\n')
+        print(
+            f'\u001b[35mYou need to play an even number of rounds. You will play {gamesNumber + 1} rounds. \u001b[0m\n')
         gamesNumber += 1
 
     for counter in range(1, gamesNumber + 1, 2):
@@ -417,6 +419,7 @@ def greeting():
     creatingFiles()
     gameTypeResponse()
 
+
 # Initialising a game type that user wants to play.
 # An exception is provided.
 def gameTypeResponse():
@@ -431,6 +434,8 @@ def gameTypeResponse():
         print('\u001b[41mSomething went wrong. Try to answer the question again.\u001b[0m')
         gameTypeResponse()
 
+
+# The program does not stop after one game is done. Users are able to choose whether they want to play one more game or not.
 def playAgain():
     playAgainResponse = input('\u001b[35mWould you like to play again: Yes or No? \u001b[0m').lower()
 
@@ -445,6 +450,7 @@ def playAgain():
     else:
         print('\u001b[41mSomething went wrong. Try to answer the question again.\u001b[0m')
         playAgain()
+
 
 # Running the initial greeting function in order to start the game process
 greeting()
