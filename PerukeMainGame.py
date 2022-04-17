@@ -372,8 +372,9 @@ def statisticsQuestion(username1, username2):
         '\u001b[35mWould you like to have your games statistics history: Yes or No?\u001b[0m \n').lower()
     if whetherYesOrNotStats == 'yes':
         playersStatisticsRequest(username1, username2)
+        playAgain()
     elif whetherYesOrNotStats == 'no':
-        print('\u001b[35mThank you for playing the Peruke Game! See you later!\u001b[0m')
+        playAgain()
     else:
         print("\u001b[41mSomething went wrong. Try again.\u001b[0m\n")
         statisticsQuestion(username1, username2)
@@ -425,6 +426,21 @@ def gameTypeResponse():
     if gameType != "f" and gameType != "v":
         print('\u001b[41mSomething went wrong. Try to answer the question again.\u001b[0m')
         gameTypeResponse()
+
+def playAgain():
+    playAgainResponse = input('\u001b[35mWould you like to play again: Yes or No? \u001b[0m').lower()
+
+    if playAgainResponse == 'yes':
+        global player1
+        global player2
+        player1 = {1: False, 2: False, 3: False, 4: False, 5: False, 6: False}
+        player2 = {1: False, 2: False, 3: False, 4: False, 5: False, 6: False}
+        gameTypeResponse()
+    elif playAgainResponse == 'no':
+        print('\u001b[35mThank you for playing the Peruke Game! See you later!\u001b[0m')
+    else:
+        print('\u001b[41mSomething went wrong. Try to answer the question again.\u001b[0m')
+        playAgain()
 
 # Running the initial greeting function in order to start the game process
 greeting()
