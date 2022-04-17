@@ -317,6 +317,10 @@ def onePlayerGame():
         except:
             print('\u001b[41mYour response is incorrect. Try again :)\u001b[0m')
 
+    if gamesNumber % 2 == 1:
+        print(f'\u001b[35mYou need to play an even number of rounds. You will play {gamesNumber+1} rounds. \u001b[0m\n')
+        gamesNumber += 1
+
     for counter in range(1, gamesNumber + 1, 2):
         currentNumber = random.randint(1, 6)
         print(f'\u001b[44;1mRound number {counter}.\u001b[0m')
