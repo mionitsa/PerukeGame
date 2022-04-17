@@ -107,7 +107,7 @@ def registration():
             return initialisationOptions()
 
         userDetailsEntry = {"username": username, "password": password}
-        userGameHistoryEntry = {'username': username, 'gamesNumber': 0, 'winnings': 0, 'losings': 0, 'draws': 0}
+        userGameHistoryEntry = {'username': username, 'numberOfRounds': 0, 'winnings': 0, 'losings': 0, 'draws': 0}
 
         # Storing all information into JSON files.
         with open('usersLoginDetails.json') as file:

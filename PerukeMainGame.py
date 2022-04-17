@@ -430,7 +430,7 @@ def greeting():
 # Initialising a game type that user wants to play.
 # An exception is provided.
 def gameTypeResponse():
-    gameType = input('Would you like to play with your friend (F) or with virtual player (V)?\n').lower()
+    gameType = input('\u001b[35mWould you like to play with your friend (F) or with virtual player (V)?\u001b[0m\n').lower()
     if gameType == 'f':
         twoPlayersGame()
 
