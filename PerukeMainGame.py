@@ -211,7 +211,7 @@ def playersStatisticsRequest(username1, username2):
             print(f'You have played {item["numberOfRounds"]} game(s) in total.')
             print(f'You won {item["winnings"]} time(s).')
             print(f'You lost {item["losings"]} time(s).')
-            print(f'You had a draw {item["draws"]} time(s).')
+            print(f'You had a draw {item["draws"]} time(s).\n')
 
         if username2 == item['username']:
             print('')
@@ -311,7 +311,7 @@ def onePlayerGame():
     username2 = 'VirtualPlayer'
 
     # Computer randomly chooses whether attack or protect:
-    computerChoices = ['a', 'p']
+    computerChoices = ('a', 'p')
     turn = None
 
     # An exception is provided.
@@ -375,14 +375,14 @@ def onePlayerGame():
         diskBoardForPrint(player2, username1, username2)
 
     score(username1, username2, numberOfRounds, turn)
-    statisticsQuestion(username1, username2 == False)  # There is no player 2 as there is a virtual player.
+    statisticsQuestion(username1, username2 = False)  # There is no player 2 as there is a virtual player.
 
 
 # Function provides a question for the user to give the one's games statistics or not.
 # An exception is provided.
 def statisticsQuestion(username1, username2):
     whetherYesOrNotStats = input(
-        '\u001b[35mWould you like to have your games statistics history: Yes or No?\u001b[0m \n').lower()
+        '\u001b[35mWould you like to see your games statistics history: Yes or No?\u001b[0m \n').lower()
     if whetherYesOrNotStats == 'yes':
         playersStatisticsRequest(username1, username2)
         playAgain()
