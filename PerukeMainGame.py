@@ -107,7 +107,7 @@ def userGamesHistoryInserting(userGamesHistoryEntry):
 
 
 # Function stands for scoring, collecting and putting these values into JSON files.
-def score(username1, username2, gamesNumber, turn):
+def score(username1, username2, numberOfRounds, turn):
     from datetime import datetime
     score1 = 0
     score2 = 0
@@ -162,7 +162,7 @@ def score(username1, username2, gamesNumber, turn):
     # Forming the entry for storing information into Game History File.
     gameHistoryEntry = {
         'info': {'dateAndTime': str(datetime), 'gameIndex': len(dataGamesHistory) + 1,
-                 'numberOfRounds': gamesNumber,
+                 'numberOfRounds': numberOfRounds,
                  'gameType': gameType}, 'winner': winnerEntry, 'loser': loserEntry, 'draw': drawEntry,
         'diskBoard': {
             f'{username1}': player1, f'{username2}': player2}}
@@ -179,18 +179,18 @@ def score(username1, username2, gamesNumber, turn):
     for item in leaderBoardData:
         if username1 == item['username'] and winnerEntry == username1:
             item['winnings'] += 1
-            item['gamesNumber'] += 1
+            item['numberOfRounds'] += 1
         if username2 == item['username'] and winnerEntry == username2:
             item['winnings'] += 1
-            item['gamesNumber'] += 1
+            item['numberOfRounds'] += 1
         if username1 == item['username'] and loserEntry == username1:
             item['losings'] += 1
-            item['gamesNumber'] += 1
+            item['numberOfRounds'] += 1
         if username2 == item['username'] and loserEntry == username2:
             item['losings'] += 1
-            item['gamesNumber'] += 1
+            item['numberOfRounds'] += 1
         if (username1 == item['username'] or username2 == item['username']) and drawEntry == True:
-            item['gamesNumber'] += 1
+            item['numberOfRounds'] += 1
             item['draws'] += 1
 
     with open('leaderBoard.json', 'w') as file:
@@ -208,7 +208,7 @@ def playersStatisticsRequest(username1, username2):
         if username1 == item['username']:
             print('')
             print(f'\u001b[1m\u001b[4mGames Statistics History for \u001b[33;1m{username1}\u001b[0m:')
-            print(f'You have played {item["gamesNumber"]} game(s) in total.')
+            print(f'You have played {item["numberOfRounds"]} game(s) in total.')
             print(f'You won {item["winnings"]} time(s).')
             print(f'You lost {item["losings"]} time(s).')
             print(f'You had a draw {item["draws"]} time(s).')
@@ -216,7 +216,7 @@ def playersStatisticsRequest(username1, username2):
         if username2 == item['username']:
             print('')
             print(f'\u001b[1m\u001b[4mGames Statistics History for \u001b[33;1m{username2}\u001b[0m:')
-            print(f'You have played {item["gamesNumber"]} game(s) in total.')
+            print(f'You have played {item["numberOfRounds"]} game(s) in total.')
             print(f'You won {item["winnings"]} time(s).')
             print(f'You lost {item["losings"]} time(s).')
             print(f'You had a draw {item["draws"]} time(s).')
@@ -247,14 +247,19 @@ def twoPlayersGame():
     # An exception is provided of the input is provided.
     while True:
         try:
-            gamesNumber = int(input("How many rounds do you want to play?\n"))
-            if type(gamesNumber) == int:
+            numberOfRounds = int(input("How many rounds do you want to play?\n"))
+            if type(numberOfRounds) == int:
                 break
         except:
             print('\u001b[41mYour response is incorrect. Try again :)\u001b[0m ')
+    
+    if numberOfRounds % 2 == 1:
+        print(
+            f'\u001b[35mYou need to play an even number of rounds. You will play {numberOfRounds + 1} rounds. \u001b[0m\n')
+        numberOfRounds += 1
 
     # Main loop where functions are called.
-    for counter in range(1, gamesNumber + 1):
+    for counter in range(1, numberOfRounds + 1):
         currentNumber = random.randint(1, 6)
         print(f'\u001b[44;1mRound number {counter}.\u001b[0m')
         print(f"Dice shows number \u001b[33;1m{currentNumber}\u001b[0m")
@@ -283,7 +288,7 @@ def twoPlayersGame():
 
     # Two functions in the end of the game work to store, calculate the information about game results as well as
     # asking users to get a statistics of the game.
-    score(username1, username2, gamesNumber, turn)
+    score(username1, username2, numberOfRounds, turn)
     statisticsQuestion(username1, username2)
 
 
@@ -312,18 +317,20 @@ def onePlayerGame():
     # An exception is provided.
     while True:
         try:
-            gamesNumber = int(input("How many rounds do you want to play?\n"))
-            if type(gamesNumber) == int:
+            numberOfRounds = int(input("How many rounds do you want to play?\n"))
+            if type(numberOfRounds) == int:
                 break
         except:
             print('\u001b[41mYour response is incorrect. Try again :)\u001b[0m')
 
-    if gamesNumber % 2 == 1:
+    # It is important to check if there is an even number of rounds or not. 
+    # If it is not, just warn users about this changing 
+    if numberOfRounds % 2 == 1:
         print(
-            f'\u001b[35mYou need to play an even number of rounds. You will play {gamesNumber + 1} rounds. \u001b[0m\n')
-        gamesNumber += 1
+            f'\u001b[35mYou need to play an even number of rounds. You will play {numberOfRounds + 1} rounds. \u001b[0m\n')
+        numberOfRounds += 1
 
-    for counter in range(1, gamesNumber + 1, 2):
+    for counter in range(1, numberOfRounds + 1, 2):
         currentNumber = random.randint(1, 6)
         print(f'\u001b[44;1mRound number {counter}.\u001b[0m')
         print(f"Dice shows number \u001b[33;1m{currentNumber}\u001b[0m")
@@ -367,7 +374,7 @@ def onePlayerGame():
         diskBoardForPrint(player1, username1, username2)
         diskBoardForPrint(player2, username1, username2)
 
-    score(username1, username2, gamesNumber, turn)
+    score(username1, username2, numberOfRounds, turn)
     statisticsQuestion(username1, username2 == False)  # There is no player 2 as there is a virtual player.
 
 
