@@ -58,6 +58,10 @@ def registration():
     passwordRequirementsInstruction()
     username = input("Username: ")
 
+    if ' ' in username:
+        print('\u001b[Username should not consist of any spaces. Try again.\u001b[0m\n')
+        return initialisationOptions()
+
     if bool(username.strip()) == False:
         print('\u001b[Username is blank. Try again.\u001b[0m\n')
         return initialisationOptions()
