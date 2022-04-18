@@ -301,7 +301,7 @@ def loadingAnimation():
         time.sleep(0.1)
         sys.stdout.write('\rLoading.')
         time.sleep(0.1)
-    sys.stdout.write('\rDone!\n')
+    sys.stdout.write('\rDone!      \n')
 
 
 # Main part of single player game mode.
@@ -325,6 +325,10 @@ def onePlayerGame():
 
     # It is important to check if there is an even number of rounds or not.
     # If it is not, just warn users about this changing
+    if numberOfRounds <= 0:
+        print(f'\u001b[35mYou need to play a positive number of rounds. \u001b[0m\n')
+        return onePlayerGame()
+    
     if numberOfRounds % 2 == 1:
         print(
             f'\u001b[35mYou need to play an even number of rounds. You will play {numberOfRounds + 1} rounds. \u001b[0m\n')
