@@ -116,13 +116,13 @@ def score(username1, username2, numberOfRounds, turn):
     # Calculating the actual players score.
     for counter in range(1, 7):
         if player1[counter] == True:
-            score1 += 2
+            score1 += 3
         if player1[counter] == False:
             score1 += 1
 
     for counter in range(1, 7):
         if player2[counter] == True:
-            score2 += 2
+            score2 += 3
         if player2[counter] == False:
             score2 += 1
 
@@ -179,18 +179,18 @@ def score(username1, username2, numberOfRounds, turn):
     for item in leaderBoardData:
         if username1 == item['username'] and winnerEntry == username1:
             item['winnings'] += 1
-            item['numberOfRounds'] += 1
+            item['numberOfGames'] += 1
         if username2 == item['username'] and winnerEntry == username2:
             item['winnings'] += 1
-            item['numberOfRounds'] += 1
+            item['numberOfGames'] += 1
         if username1 == item['username'] and loserEntry == username1:
             item['losings'] += 1
-            item['numberOfRounds'] += 1
+            item['numberOfGames'] += 1
         if username2 == item['username'] and loserEntry == username2:
             item['losings'] += 1
-            item['numberOfRounds'] += 1
+            item['numberOfGames'] += 1
         if (username1 == item['username'] or username2 == item['username']) and drawEntry == True:
-            item['numberOfRounds'] += 1
+            item['numberOfGames'] += 1
             item['draws'] += 1
 
     with open('leaderBoard.json', 'w') as file:
@@ -208,7 +208,7 @@ def playersStatisticsRequest(username1, username2):
         if username1 == item['username']:
             print('')
             print(f'\u001b[1m\u001b[4mGames Statistics History for \u001b[33;1m{username1}\u001b[0m:')
-            print(f'You have played {item["numberOfRounds"]} game(s) in total.')
+            print(f'You have played {item["numberOfGames"]} game(s) in total.')
             print(f'You won {item["winnings"]} time(s).')
             print(f'You lost {item["losings"]} time(s).')
             print(f'You had a draw {item["draws"]} time(s).\n')
@@ -216,7 +216,7 @@ def playersStatisticsRequest(username1, username2):
         if username2 == item['username']:
             print('')
             print(f'\u001b[1m\u001b[4mGames Statistics History for \u001b[33;1m{username2}\u001b[0m:')
-            print(f'You have played {item["numberOfRounds"]} game(s) in total.')
+            print(f'You have played {item["numberOfGames"]} game(s) in total.')
             print(f'You won {item["winnings"]} time(s).')
             print(f'You lost {item["losings"]} time(s).')
             print(f'You had a draw {item["draws"]} time(s).')
@@ -328,7 +328,7 @@ def onePlayerGame():
     if numberOfRounds <= 0:
         print(f'\u001b[35mYou need to play a positive number of rounds. \u001b[0m\n')
         return onePlayerGame()
-    
+
     if numberOfRounds % 2 == 1:
         print(
             f'\u001b[35mYou need to play an even number of rounds. You will play {numberOfRounds + 1} rounds. \u001b[0m\n')
@@ -377,6 +377,7 @@ def onePlayerGame():
 
         diskBoardForPrint(player1, username1, username2)
         diskBoardForPrint(player2, username1, username2)
+        time.sleep(1.5)
 
     score(username1, username2, numberOfRounds, turn)
     statisticsQuestion(username1, username2 = False)  # There is no player 2 as there is a virtual player.

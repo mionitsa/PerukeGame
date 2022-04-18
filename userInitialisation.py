@@ -107,7 +107,7 @@ def registration():
             return initialisationOptions()
 
         userDetailsEntry = {"username": username, "password": password}
-        userGameHistoryEntry = {'username': username, 'numberOfRounds': 0, 'winnings': 0, 'losings': 0, 'draws': 0}
+        leaderBoardInitialEntry = {'username': username, 'numberOfGames': 0, 'winnings': 0, 'losings': 0, 'draws': 0}
 
         # Storing all information into JSON files.
         with open('usersLoginDetails.json') as file:
@@ -117,7 +117,7 @@ def registration():
             leaderBoardEntry = json.load(file)
 
         dataDetailsEntry.append(userDetailsEntry)
-        leaderBoardEntry.append(userGameHistoryEntry)
+        leaderBoardEntry.append(leaderBoardInitialEntry)
 
         with open('usersLoginDetails.json', 'w') as file:
             json.dump(dataDetailsEntry, file, indent=2)
