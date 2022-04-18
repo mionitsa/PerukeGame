@@ -53,7 +53,7 @@ def noChoice(turn, username1, username2, currentNumber, computerResponse):
 # All exceptions are provided
 def gettingUserResponse(turn, username1, username2, currentNumber):
     if turn == True or turn == None:
-        print(f"This is {username1}'s turn! Please choose whether attack or protect your disk: A or P.")
+        print(f'This is {username1}"s turn! Please choose whether attack or protect your disk: A or P.')
     else:
         print(f"This is {username2}'s turn! Please choose whether attack or protect your disk: A or P.")
     userResponse = input("Player's choice: ").lower()
@@ -252,7 +252,7 @@ def twoPlayersGame():
                 break
         except:
             print('\u001b[41mYour response is incorrect. Try again :)\u001b[0m ')
-    
+
     if numberOfRounds % 2 == 1:
         print(
             f'\u001b[35mYou need to play an even number of rounds. You will play {numberOfRounds + 1} rounds. \u001b[0m\n')
@@ -323,8 +323,8 @@ def onePlayerGame():
         except:
             print('\u001b[41mYour response is incorrect. Try again :)\u001b[0m')
 
-    # It is important to check if there is an even number of rounds or not. 
-    # If it is not, just warn users about this changing 
+    # It is important to check if there is an even number of rounds or not.
+    # If it is not, just warn users about this changing
     if numberOfRounds % 2 == 1:
         print(
             f'\u001b[35mYou need to play an even number of rounds. You will play {numberOfRounds + 1} rounds. \u001b[0m\n')
@@ -440,7 +440,6 @@ def gameTypeResponse():
     if gameType != "f" and gameType != "v":
         print('\u001b[41mSomething went wrong. Try to answer the question again.\u001b[0m')
         gameTypeResponse()
-
 
 # The program does not stop after one game is done. Users are able to choose whether they want to play one more game or not.
 def playAgain():
