@@ -377,7 +377,6 @@ def onePlayerGame():
 
         diskBoardForPrint(player1, username1, username2)
         diskBoardForPrint(player2, username1, username2)
-        time.sleep(1.5)
 
     score(username1, username2, numberOfRounds, turn)
     statisticsQuestion(username1, username2 = False)  # There is no player 2 as there is a virtual player.
